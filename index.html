@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Weather Forecast</title>
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body ng-app="weatherForecast" ng-controller="weatherCtrl">
+	<div class="container-fluid">
+		<div class="container">
+			<header class="text-center">
+				<h1>Weather Forecast App</h1>
+			</header>
+			<br>
+			<div class="content">
+				<div class="row search-area">
+					<div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-6 col-lg-offset-3">
+						<input type="text" ng-model="" placeholder="Enter zipcode" class="form-control">
+					</div>	
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+						<button class="btn btn-sucess" ng-click="search()">Search</button>
+					</div>
+				</div>
+				<ul>
+					<li class="row" ng-repeat = "info in infos">
+						<!-- Hour -- >
+						<div class="col-md-4"></div>
+						<!-- Image -->
+						<div class="col-md-4"></div>
+						<!-- Info -->
+						<div class="col-md-4"></div>
+					</li>
+				</ul>
+			</div>
+			<footer>
+				
+			</footer>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script> <!-- jQuery -->
+  	<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!--Bootstrap -->
+</body>
