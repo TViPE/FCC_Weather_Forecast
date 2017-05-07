@@ -6,12 +6,14 @@
 	<link rel="stylesheet" href="css/style.css">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="js/app.js"></script>
 
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 
 </head>
 <body ng-app="weatherForecast" ng-controller="weatherCtrl">
@@ -24,20 +26,26 @@
 			<div class="content">
 				<div class="row search-area">
 					<div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-6 col-lg-offset-3">
-						<input type="text" ng-model="" placeholder="Enter zipcode" class="form-control">
+						<input type="text" ng-model="Data.zipcode" placeholder="Enter zipcode" class="form-control">
 					</div>	
 					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-						<button class="btn btn-sucess" ng-click="search()">Search</button>
+						<button class="btn btn-sucess" ng-click="getCurrent()">Search</button>
 					</div>
 				</div>
 				<ul>
-					<li class="row" ng-repeat = "info in infos">
+					<li class="row">
 						<!-- Hour -- >
-						<div class="col-md-4"></div>
-						<!-- Image -->
-						<div class="col-md-4"></div>
-						<!-- Info -->
-						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<p>{{Data.city}}</p>
+						</div>
+						<!-- Temp -->
+						<div class="col-md-4">
+							<p>{{Data.tempInC}}</p>
+						</div>
+						<!-- Des -->
+						<div class="col-md-4">
+							<p>{{Data.des}}</p>
+						</div>
 					</li>
 				</ul>
 			</div>
