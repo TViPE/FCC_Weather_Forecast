@@ -11,7 +11,7 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="js/app.js"></script>
+	<script src="js/app_01.js"></script>
 
 	
 
@@ -26,28 +26,37 @@
 			<div class="content">
 				<div class="row search-area">
 					<div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-6 col-lg-offset-3">
-						<input type="text" ng-model="Data.zipcode" placeholder="Enter zipcode" class="form-control">
+						<input type="text" ng-model="city_zipcode" placeholder="Enter zipcode" class="form-control">
 					</div>	
 					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-						<button class="btn btn-sucess" ng-click="getCurrent()">Search</button>
+						<button class="btn btn-sucess" ng-click="getWeather(city_zipcode)">Search</button>
 					</div>
 				</div>
-				<ul>
-					<li class="row">
-						<!-- Hour -- >
-						<div class="col-md-4">
-							<p>{{Data.city}}</p>
-						</div>
-						<!-- Temp -->
-						<div class="col-md-4">
-							<p>{{Data.tempInC}}</p>
-						</div>
-						<!-- Des -->
-						<div class="col-md-4">
-							<p>{{Data.des}}</p>
-						</div>
-					</li>
-				</ul>
+				<br>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td><strong>CURRENT TEMPERATURE</strong></td>
+							<td><strong>MIN TEMPERATURE</strong></td>
+							<td><strong>MAX TEMPERATURE</strong></td>
+							<td><strong>PRESSURE</strong></td>
+							<td><strong>HUMIDITY</strong></td>
+							<td><strong>WIND SPEED</strong></td>
+							<td><strong>NOTE</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in dataArray">
+							<td>{{x.temp}}</td>
+							<td>{{x.minTemp}}</td>
+							<td>{{x.maxTemp}}</td>
+							<td>{{x.pressure}}</td>
+							<td>{{x.humidity}}</td>
+							<td>{{x.windSpeed}}</td>
+							<td>{{x.des}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<footer>
 				
