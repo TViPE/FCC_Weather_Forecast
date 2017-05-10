@@ -33,9 +33,10 @@
 					</div>
 				</div>
 				<br>
-				<table class="table table-striped">
+				<table class="table table-striped" ng-hide="myVar">
 					<thead>
 						<tr>
+							<td><strong>DATE</strong></td>
 							<td><strong>CURRENT TEMPERATURE</strong></td>
 							<td><strong>MIN TEMPERATURE</strong></td>
 							<td><strong>MAX TEMPERATURE</strong></td>
@@ -47,6 +48,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="x in dataArray">
+							<td>{{x.date | date:'yyyy-MM-dd'}}</td>
 							<td>{{x.temp}}</td>
 							<td>{{x.minTemp}}</td>
 							<td>{{x.maxTemp}}</td>
