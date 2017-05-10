@@ -11,6 +11,10 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- Chart JS -->
+	<script src="js/node_modules/chart.js/dist/Chart.min.js"></script>
+	<script src="js/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+	<!-- App JS -->
 	<script src="js/app_01.js"></script>
 
 	
@@ -33,13 +37,13 @@
 					</div>
 				</div>
 				<br>
-				<table class="table table-striped" ng-hide="myVar">
+				<table class="table table-striped" ng-show="myVar">
 					<thead>
 						<tr>
 							<td><strong>DATE</strong></td>
-							<td><strong>CURRENT TEMPERATURE</strong></td>
-							<td><strong>MIN TEMPERATURE</strong></td>
-							<td><strong>MAX TEMPERATURE</strong></td>
+							<td><strong>CURRENT TEMPERATURE (&deg;F)</strong></td>
+							<td><strong>MIN TEMPERATURE (&deg;F)</strong></td>
+							<td><strong>MAX TEMPERATURE (&deg;F)</strong></td>
 							<td><strong>PRESSURE</strong></td>
 							<td><strong>HUMIDITY</strong></td>
 							<td><strong>WIND SPEED</strong></td>
@@ -47,7 +51,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="x in dataArray">
+						<tr ng-repeat="x in dataArray" class="text-center">
 							<td>{{x.date | date:'yyyy-MM-dd'}}</td>
 							<td>{{x.temp}}</td>
 							<td>{{x.minTemp}}</td>
@@ -59,6 +63,14 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="row" id="weatherChart">
+					<div class="col-md-12">
+						<canvas id="line" class="chart chart-line" chart-data="data"
+							chart-labels="labels" chart-series="series" chart-options="options"
+							chart-dataset-override="datasetOverride" >
+						</canvas>
+					</div>
+				</div>
 			</div>
 			<footer>
 				
