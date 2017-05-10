@@ -11,10 +11,14 @@ app.controller("weatherCtrl", function($scope, $http){
 		$http.get(url).
 		success(function(data){
 			$scope.dataArray = [];
-			console.log(data);
-			console.log(data.city);
-			data.list.forEach(function(item){
+			//console.log(data);
+			//console.log(data.city);
+			var date = new Date();
+			//yesterday
+			date = new Date(date.getTime() - (1000*60*60*24));
+			data.list.forEach(function(item){	
 				$scope.Data = {};
+				$scope.Data.date = date;
 				$scope.Data.temp = item.temp.day;
 				$scope.Data.minTemp = item.temp.min;
 				$scope.Data.maxTemp = item.temp.max;
@@ -23,6 +27,8 @@ app.controller("weatherCtrl", function($scope, $http){
 				$scope.Data.des = item.weather[0].description;
 				$scope.Data.windSpeed = item.speed;
 				$scope.dataArray.push($scope.Data);
+				// Increase date by one
+				date = new Date(date.getTime()+ (1000*60*60*24));
 			})
 		}).
 		error(function(data, status){
