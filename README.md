@@ -2,11 +2,11 @@
 # Weather Forecast Application
 # Project Overview
 
-The goal of this project is to create a single page weather forecast application. The application's functionalities include:
-- Searching for the daily weather forecast based on the zipcode entered by the user. 
+The goal of this project is to create a single page weather forecast application built with AngularJS. The application's functionalities include:
+- Searching for the daily weather forecast based on the zip code entered by the user.
 - Displaying the weather result obtained from the third party weather API.
-- Using Chart JS to create a daily tempurature chart.
-- Handling error when the user enters wrong zipcode or the server has problems.
+- Using Chart JS to create a daily temperature chart.
+- Handling errors when the user enters the wrong zip code or the server has problems.
 
 
 ## Why this Project?
