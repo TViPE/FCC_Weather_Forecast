@@ -9,6 +9,8 @@
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<script src="js/jquery.min.js"></script> <!-- jQuery -->
+
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<!-- Chart JS -->
@@ -17,68 +19,74 @@
 	<!-- App JS -->
 	<script src="js/app_01.js"></script>
 
+	<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+
 	
 
 </head>
-<body ng-app="weatherForecast" ng-controller="weatherCtrl">
-	<div class="container-fluid">
-		<div class="container">
-			<header class="text-center">
-				<h1>Weather Forecast App</h1>
-			</header>
-			<br>
-			<div class="content">
-				<div class="row search-area">
-					<div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-6 col-lg-offset-3">
-						<input type="text" ng-model="city_zipcode" placeholder="Enter zipcode" class="form-control">
-					</div>	
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-						<button class="btn btn-sucess" ng-click="getWeather(city_zipcode)">Search</button>
-					</div>
-				</div>
-				<br>
-				<table class="table table-striped" ng-show="myVar">
-					<thead>
-						<tr>
-							<td><strong>DATE</strong></td>
-							<td><strong>CURRENT TEMPERATURE (&deg;F)</strong></td>
-							<td><strong>MIN TEMPERATURE (&deg;F)</strong></td>
-							<td><strong>MAX TEMPERATURE (&deg;F)</strong></td>
-							<td><strong>PRESSURE</strong></td>
-							<td><strong>HUMIDITY</strong></td>
-							<td><strong>WIND SPEED</strong></td>
-							<td><strong>NOTE</strong></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="x in dataArray" class="text-center">
-							<td>{{x.date | date:'yyyy-MM-dd'}}</td>
-							<td>{{x.temp}}</td>
-							<td>{{x.minTemp}}</td>
-							<td>{{x.maxTemp}}</td>
-							<td>{{x.pressure}}</td>
-							<td>{{x.humidity}}</td>
-							<td>{{x.windSpeed}}</td>
-							<td>{{x.des}}</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="row" id="weatherChart">
-					<div class="col-md-12">
-						<canvas id="line" class="chart chart-line" chart-data="data"
-							chart-labels="labels" chart-series="series" chart-options="options"
-							chart-dataset-override="datasetOverride" >
-						</canvas>
-					</div>
+<body ng-app="weatherForecast" ng-controller="weatherCtrl" class="container-fluid">
+	<div class="container">
+		<header class="text-center">
+			<h1>Weather Forecast App</h1>
+		</header>
+		<br>
+		<div class="content">
+			<div class="row search-area">
+				<div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-6 col-lg-offset-3">
+					<input type="text" ng-model="city_zipcode" placeholder="Enter zipcode" class="form-control">
+				</div>	
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+					<button class="btn btn-sucess" ng-click="getWeather(city_zipcode)">Search</button>
 				</div>
 			</div>
-			<footer>
-				
-			</footer>
+			<br>
+			<table class="table table-bordered table-striped" ng-show="myVar">
+				<thead>
+					<tr class="text-center">
+						<td><strong>DATE</strong></td>
+						<td><strong>CURRENT TEMPERATURE (&deg;F)</strong></td>
+						<td><strong>MIN TEMPERATURE (&deg;F)</strong></td>
+						<td><strong>MAX TEMPERATURE (&deg;F)</strong></td>
+						<td><strong>PRESSURE (in)</strong></td>
+						<td><strong>HUMIDITY (%)</strong></td>
+						<td><strong>WIND SPEED (mph)</strong></td>
+						<td><strong>NOTE</strong></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in dataArray" class="text-center">
+						<td>{{x.date | date:'yyyy-MM-dd'}}</td>
+						<td>{{x.temp}}</td>
+						<td>{{x.minTemp}}</td>
+						<td>{{x.maxTemp}}</td>
+						<td>{{x.pressure}}</td>
+						<td>{{x.humidity}}</td>
+						<td>{{x.windSpeed}}</td>
+						<td>{{x.des}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<hr ng-show="myVar">
+			<h2 class="text-center" ng-show="myVar">Daily Temperature Chart (&deg;F)</h2>
+			<div class="row" id="weatherChart" ng-show="myVar">
+				<div class="col-md-12">
+					<canvas id="line" class="chart chart-line" chart-data="data"
+						chart-labels="labels" chart-series="series" chart-options="options"
+						chart-dataset-override="datasetOverride" >
+					</canvas>
+				</div>
+			</div>
+			<span id="errorMessage" ng-show="error">{{errorMessage}} - There is an error right now. Please check your zip code or try again later</span>
+			<br>
 		</div>
+		<footer>
+			
+		</footer>
 	</div>
-	<script src="js/jquery.min.js"></script> <!-- jQuery -->
-  	<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.js"></script>
 
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!--Bootstrap -->
+	
+  	
 </body>
