@@ -14,6 +14,7 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
 
 app.controller("weatherCtrl", function($scope, $http){
 	$scope.myVar = false;
+	$scope.error = false;
 	$scope.getWeather = function(city_zipcode){
 		
 		var api = "http://api.openweathermap.org/data/2.5/forecast/daily?zip=";
@@ -23,6 +24,7 @@ app.controller("weatherCtrl", function($scope, $http){
 		var url = api + city_zipcode + units+ appid; //+ cb;
 		$http.get(url).
 		success(function(data){
+			$scope.error = false;
 			$scope.myVar = true;
 			$scope.dataArray = [];
 			var date = new Date();
@@ -39,13 +41,6 @@ app.controller("weatherCtrl", function($scope, $http){
 				$scope.Data.humidity = item.humidity;
 				$scope.Data.des = item.weather[0].description;
 				$scope.Data.windSpeed = item.speed;
-
-				// Add weather animation icon
-				// Link : https://codepen.io/joshbader/pen/EjXgqr
-
-				// ---------------------- //
-
-
 				$scope.dataArray.push($scope.Data);
 
 
@@ -54,13 +49,13 @@ app.controller("weatherCtrl", function($scope, $http){
 			});
 
 			$scope.labels = [];
-			$scope.data = [];
+			$scope.data = [[]];
 			$scope.dataArray.forEach(function (obj){
 				var month = obj.date.getUTCMonth() + 1;
-				var day = obj.date.getUTCDate();
+				var day = obj.date.getUTCDate() - 1 ;
 				var newdate = month + "/" + day;
 				$scope.labels.push(newdate);
-				$scope.data.push(obj.temp);
+				$scope.data[0].push(obj.temp);
 			});
 			$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 			$scope.options = {
@@ -78,13 +73,12 @@ app.controller("weatherCtrl", function($scope, $http){
 
 			$scope.city_zipcode = "";
 		}).
-		error(function(data, status){
+		error(function(data, status, statusText){
+			$scope.myVar = false;
+			$scope.error = true;
 			console.log("Error " + status);
+			console.log("Error " + statusText);
+			$scope.errorMessage = "Error " + status;
 		});
-
-		// $scope.labels = [];
-		// dataArray.forEach(function (item){
-		// 	$scope.labels.push()
-		// })
 	}
 });
